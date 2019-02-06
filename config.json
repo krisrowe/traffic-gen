@@ -1,0 +1,29 @@
+{
+	"host": "the-xyz-123-company.com",
+	"resources": [
+		{
+			"path": "/catalog-api/v1/products",
+			"status": 200
+		}, 
+		{
+			"path": "/catalog-api/v1/products/18841",
+			"status": 200
+		}, 
+		{
+			"path": "/catalog-api/v1/productz",
+			"status": 404
+		}, 
+		{
+			"path": "/stores-api/v1/stores",
+			"status": 200
+		},
+		{
+			"path": "/stores-api/v1/stores/benbrook",
+			"status": 200
+		},
+		{
+			"path": "/stores-api/v1/storez",
+			"status": 404
+		}
+	]
+}
