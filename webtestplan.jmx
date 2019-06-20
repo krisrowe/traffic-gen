@@ -6,7 +6,28 @@
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments"/>
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="URLHOST" elementType="Argument">
+            <stringProp name="Argument.name">URLHOST</stringProp>
+            <stringProp name="Argument.value">${__P(URLHOST,perf-poc-eastus2-01.regional.azure-api.net)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="URLPATH" elementType="Argument">
+            <stringProp name="Argument.name">URLPATH</stringProp>
+            <stringProp name="Argument.value">${__P(URLPATH,/test/)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="HEADERNAME" elementType="Argument">
+            <stringProp name="Argument.name">HEADERNAME</stringProp>
+            <stringProp name="Argument.value">${__P(HEADERNAME,Ocp-Apim-Subscription-Key)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="HEADERVALUE" elementType="Argument">
+            <stringProp name="Argument.name">HEADERVALUE</stringProp>
+            <stringProp name="Argument.value">${__P(HEADERVALUE,a9fecf7d693641ccb57211f2720405c6)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
       </elementProp>
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
@@ -32,11 +53,11 @@ Make test last 1 minute (see Scheduler)</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">{__P(host)}</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(host, &quot;perf-poc-eastus2-01.regional.azure-api.net&quot;)}</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/testgetapi</stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
           <stringProp name="TestPlan.comments">Notice Timeouts:
 Read to 30s
 Connect to 5s</stringProp>
@@ -69,8 +90,8 @@ Connect to 5s</stringProp>
               <stringProp name="Header.value"> gzip, deflate</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">{__P(header)}</stringProp>
-              <stringProp name="Header.value">{__P(key)}</stringProp>
+              <stringProp name="Header.name">${HEADERNAME}</stringProp>
+              <stringProp name="Header.value">${HEADERVALUE}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -79,11 +100,11 @@ Connect to 5s</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">{__P(host)}t</stringProp>
+          <stringProp name="HTTPSampler.domain">${URLHOST}</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">{__P(path)}</stringProp>
+          <stringProp name="HTTPSampler.path">${URLPATH}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -139,7 +160,7 @@ Connect to 5s</stringProp>
           </value>
         </objProp>
         <stringProp name="TestPlan.comments">For scripting only</stringProp>
-        <stringProp name="filename"></stringProp>
+        <stringProp name="filename">results-tree</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>

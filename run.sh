@@ -16,7 +16,7 @@ rm -rf output/
 #sed 's/\/testgetapi/\/test\//g' azure-apim.jmx > azure-apim.jmx
 #sed 's/a9fecf7d693641ccb57211f2720405c6/g' > azure-apim.jmx
 
-jmeter -n -t apigee.jmx -o output/apigee -l output/apigee.jtl -j output/apigee.log -e -Jhost=perf-poc-eastus2-01.regional.azure-api.net -Jpath=/test/ -Jheader=Ocp-Apim-Subscription-Key -Jkey=a9fecf7d693641ccb57211f2720405c6 
+jmeter -JURLHOST=perf-poc-eastus2-01.regional.azure-api.net -JURLPATH=/test2f/ -JHEADERNAME=Ocp-Apim-Subscription-Key -JHEADERVALUE=a9fecf7d693641ccb57211f2720405c6 -n -t apigee.jmx -o output/apigee -l output/apigee.jtl -j output/apigee.log -e
 
 #cat output/apigee/statistics.json
 
