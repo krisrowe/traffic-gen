@@ -62,8 +62,8 @@ Make test last 1 minute (see Scheduler)</stringProp>
 Read to 30s
 Connect to 5s</stringProp>
           <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
-          <stringProp name="HTTPSampler.connect_timeout">5000</stringProp>
-          <stringProp name="HTTPSampler.response_timeout">30000</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout">400</stringProp>
+          <stringProp name="HTTPSampler.response_timeout">500</stringProp>
         </ConfigTestElement>
         <hashTree/>
         <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
