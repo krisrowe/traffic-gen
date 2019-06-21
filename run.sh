@@ -30,29 +30,29 @@ curl $APIHOST --header "${APIHEADER}"
 # Repeat and show response time.
 curl -o /dev/null -s -w '%{http_code} in %{time_total}s\n' $APIHOST --header "${APIHEADER}"
 
-# Test the Apigee prod env service pointing to Google Cloud Run
-jmeter -JURLHOST=geico-prod.apigee.net -JURLPATH=/testgetapi \
+# Test the Apigee prod env service pointing to Google Cloud Functions
+jmeter -JURLHOST=geico-prod.apigee.net -JURLPATH=/gcp-serverless-test \
   -JHEADERNAME=x-apikey -JHEADERVALUE=upYgIDoREuHk3XGXeH8DweIN3J4ZfDQ5 \
   -n -t webtestplan.jmx -o output/apigee-gcp -l output/apigee-gcp.jtl \
   -j output/apigee-gcp.log -e
 
-# Test the Azure APIM API that points to Google Cloud Run
-jmeter -JURLHOST=perf-poc-eastus2-01.regional.azure-api.net -JURLPATH=/test/ \
+# Test the Azure APIM API that points to Google Cloud Functions
+jmeter -JURLHOST=perf-poc-eastus2-01.regional.azure-api.net -JURLPATH=/function \
   -JHEADERNAME=Ocp-Apim-Subscription-Key -JHEADERVALUE=a9fecf7d693641ccb57211f2720405c6 \
   -n -t webtestplan.jmx -o output/azure-apim-gcp -l output/azure-apim-gcp.jtl \
   -j output/azure-apim-gcp.log -e
 
 # Test the Apigee prod env service pointing to Azure Containers
-jmeter -JURLHOST=geico-prod.apigee.net -JURLPATH=/hello-from-gates \
-  -JHEADERNAME=x-apikey -JHEADERVALUE=upYgIDoREuHk3XGXeH8DweIN3J4ZfDQ5 \
-  -n -t webtestplan.jmx -o output/apigee-ms -l output/apigee-ms.jtl \
-  -j output/apigee-ms.log -e
+#jmeter -JURLHOST=geico-prod.apigee.net -JURLPATH=/hello-from-gates \
+#  -JHEADERNAME=x-apikey -JHEADERVALUE=upYgIDoREuHk3XGXeH8DweIN3J4ZfDQ5 \
+#  -n -t webtestplan.jmx -o output/apigee-ms -l output/apigee-ms.jtl \
+#  -j output/apigee-ms.log -e
 
 # Test the Azure APIM API that points to Azure Containers
-jmeter -JURLHOST=perf-poc-eastus2-01.regional.azure-api.net -JURLPATH=/local/ \
-  -JHEADERNAME=Ocp-Apim-Subscription-Key -JHEADERVALUE=a9fecf7d693641ccb57211f2720405c6 \
-  -n -t webtestplan.jmx -o output/azure-apim-ms -l output/azure-apim-ms.jtl \
-  -j output/azure-apim-ms.log -e
+#jmeter -JURLHOST=perf-poc-eastus2-01.regional.azure-api.net -JURLPATH=/local/ \
+#  -JHEADERNAME=Ocp-Apim-Subscription-Key -JHEADERVALUE=a9fecf7d693641ccb57211f2720405c6 \
+#  -n -t webtestplan.jmx -o output/azure-apim-ms -l output/azure-apim-ms.jtl \
+#  -j output/azure-apim-ms.log -e
 
 
 echo "*** Apigee to GCP ***"
